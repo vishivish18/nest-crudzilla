@@ -1,4 +1,5 @@
 # nest-crudzilla
+![Designer (2)](https://github.com/vishivish18/nest-crudzilla/assets/3650542/1cbf5082-5bf2-4914-910b-187745c852d6)
 
 `nest-crudzilla` is a powerful NestJS package designed to simplify CRUD (Create, Read, Update, Delete) operations in your application. With `nest-crudzilla`, you can effortlessly build RESTful APIs for your entities while maintaining flexibility and customization options.
 
