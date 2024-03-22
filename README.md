@@ -19,3 +19,36 @@ Install `nest-crudzilla` via npm or yarn:
 npm install nest-crudzilla
 # or
 yarn add nest-crudzilla
+```
+# Usage
+###  Extend CrudController in Your Controller
+
+```typescript
+import { Controller } from '@nestjs/common';
+import { CrudController } from '@vishivish18/nest-crudzilla';
+import { YourModel } from './your-model.model'; // Import your mongoose model
+
+@Controller('your-resource')
+export class YourController extends CrudController<YourModel> {
+  constructor(private readonly yourService: YourService) {
+    super(yourService);
+  }
+}
+```
+
+### Extend CrudSerice in Your Service
+
+```typescript
+import { CrudService } from '@vishivish18/nest-crudzilla';
+import { YourModel } from './your-model.model'; // Import your mongoose model
+
+export class YourService extends CrudService<YourModel> {
+    constructor(
+    @InjectModel('YourModel', ConnectionName.YourConnection)
+    private readonly yourModel: Model<YourModel>,
+  ) {
+    super(yourModel);
+  }
+}
+```
+
