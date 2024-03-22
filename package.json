@@ -1,0 +1,31 @@
+{
+  "name": "@vishivish18/nest-crudzilla",
+  "version": "1.0.0",
+  "description": "NestCRUDZilla is a powerful and intuitive package designed to streamline the implementation of CRUD (Create, Read, Update, Delete) functionality within NestJS applications. Say goodbye to repetitive code and tedious setup processes – NestCRUDMatic provides pre-built CrudController and CrudService components that can be easily integrated into your projects, allowing you to focus on building robust APIs and applications without the hassle of manual CRUD implementation",
+  "main": "dist/index.js",
+  "private": false,
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "files": [
+    "dist"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@kartikyathakur/nestjs-query-filter": "^1.1.80",
+    "@nestjs/common": "^10.3.4",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "mongoose": "^8.2.2"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^10.3.4",
+    "@types/jest": "^29.5.12",
+    "@types/mocha": "^10.0.6",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  }
+}
