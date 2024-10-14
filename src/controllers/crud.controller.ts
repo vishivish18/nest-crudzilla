@@ -14,27 +14,39 @@ export class CrudController<T, CreateDto = any, UpdateDto = any> {
   ) {}
 
   @Post()
-  async createOne(@Body() createDocument:CreateDto) {
+  async createOne(@Body() createDocument: CreateDto) {
     try {
       // Convert plain object to DTO
       const createDto: CreateDto = plainToClass(this.createDtoClass, createDocument);
-      
+
       // Perform validation
       await validateOrReject(createDto as object);
-      
+
       // Proceed with creation
       return await this.crudService.createOne(createDto);
     } catch (errors) {
-      // Handle validation errors
-      const validationErrors: ValidationError[] = errors as ValidationError[];
-      const errorMessage = validationErrors.map(error => Object.values(error.constraints)).flat();
+      // Check if the errors are an array of validation errors
+      if (Array.isArray(errors)) {
+        const validationErrors: ValidationError[] = errors as ValidationError[];
+        const errorMessage = validationErrors
+          .map(error => Object.values(error.constraints || {})) // Handle the case where constraints might be undefined
+          .flat();
+        return {
+          message: errorMessage,
+          error: 'Bad Request',
+          statusCode: HttpStatus.BAD_REQUEST,
+        };
+      }
+
+      // If it's not an array, return the error as a string (in case it's a different type of error)
       return {
-        message: errorMessage,
+        message: errors.toString(),
         error: 'Bad Request',
         statusCode: HttpStatus.BAD_REQUEST,
       };
     }
   }
+
 
   @Get()
   findAll(
